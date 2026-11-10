@@ -89,6 +89,23 @@
         <profile>
             <id>production</id>
             <properties><vaadin.productionMode>true</vaadin.productionMode></properties>
+            <build>
+                <plugins>
+                    <!-- Bundel frontend production agar JAR bisa jalan tanpa vaadin-dev (java -jar / deploy Delcom) -->
+                    <plugin>
+                        <groupId>com.vaadin</groupId>
+                        <artifactId>vaadin-maven-plugin</artifactId>
+                        <version>${vaadin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>build-frontend</id>
+                                <phase>compile</phase>
+                                <goals><goal>build-frontend</goal></goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>
